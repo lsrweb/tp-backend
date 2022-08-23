@@ -52,7 +52,7 @@ class Excel
             array_shift($data);
 
             // 返回结果
-            return $data;
+            return ["data" => $data, "fileName" => $savename];
         } catch (ValidateException $e) {
             return $e->getMessage();
         }
