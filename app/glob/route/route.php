@@ -14,5 +14,5 @@ Route::group('upload', function () {
 
 
 Route::group('email', function () {
-    Route::post('send', 'glob/Email/sendCodeToEmail');
+    Route::post("send",'app\glob\controller\Email@sendCodeToEmail');
 });

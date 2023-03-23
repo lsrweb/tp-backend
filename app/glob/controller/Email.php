@@ -2,12 +2,13 @@
 
 namespace app\glob\controller;
 
+use app\glob\Controller;
 use PHPMailer\PHPMailer\PHPMailer;
 use Psr\SimpleCache\InvalidArgumentException;
 use think\facade\Cache;
 
 
-class Email
+class Email extends Controller
 {
 
     public function sendCodeToEmail()
@@ -46,12 +47,12 @@ class Email
         } else {
             try {
                 Cache::store('redis')->set($mails, $mailCode, 300);
-                return successMsg('发送成功');
+                return $this->renderJson(200, '发送成功', []);
 
             } catch (InvalidArgumentException $e) {
                 // 删除缓存
                 Cache::store('redis')->delete($mails);
-                return errorMsg('发送失败', $e->getMessage());
+                return $this->renderError($e->getMessage(), []);
             }
         }
 
