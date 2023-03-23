@@ -12,6 +12,11 @@ Route::group('upload', function () {
     Route::post('upload_xls', 'glob/Upload/uploadXls');
 });
 
+Route::group('auth', function () {
+    Route::post('login', 'glob/Auth/login');
+});
+
+Route::get('captcha', 'glob/Captchas/generate');
 
 Route::group('email', function () {
     Route::post("send",'app\glob\controller\Email@sendCodeToEmail');
